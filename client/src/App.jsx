@@ -1,26 +1,34 @@
 import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import Form from './components/Form/Form'
+import Subtitles from './components/Subtitles'
 import './App.css'
-import background from './assets/background.jpg'
+
+const randomIntFromInterval = (min, max) => { // min and max included 
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+const rndInt = randomIntFromInterval(1, 6)
+
+
+
 
 function App() {
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen" style={{
-      backgroundImage: `url(${background})`,
+      backgroundImage: `url('src/assets/background${rndInt}.jpg')`,
       backgroundAttachment: 'fixed',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
     }}>
       <Navbar />
-      <div className='flex flex-col items-center'>
-        <div>
-          <p className='text-5xl'>CATCHY PHRASE THAT WRITES ITSELF HERE.</p>
+      <div className='flex flex-col items-center w-full pb-44'>
+        <div className='text-5xl mb-10'>
+          <Subtitles />
         </div>
-        <div className='glass w-72 h-48'>
-        
+        <div className='glass w-3/5 h-fit min-h-fit'>
+          <Form />
         </div>
       </div>
       <Footer />
