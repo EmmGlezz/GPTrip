@@ -53,7 +53,7 @@ const userParameters = {
     travel_style: null
 }
 
-const Form = () => {
+const Form = ({sendUserParameters}) => {
     const [isInfo, setIsInfo] = useState(false)
     const [currentPrompt, setCurrentPrompt] = useState('')
 
@@ -61,14 +61,17 @@ const Form = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
         
-        if (currentNumQuestion > 6) {
-            // START FETCHING PROCESS
+        if (currentNumQuestion >= 6) {
+            const parameter = questionsObject[currentNumQuestion].parameter
+            userParameters[parameter] = currentPrompt
+            sendUserParameters(userParameters)
+        } else {
+            const parameter = questionsObject[currentNumQuestion].parameter
+            userParameters[parameter] = currentPrompt
+            // console.log(userParameters)
+            currentNumQuestion ++
+            setQuestion(questionsObject[currentNumQuestion].question)
         }
-        const parameter = questionsObject[currentNumQuestion].parameter
-        userParameters[parameter] = currentPrompt
-        console.log(userParameters)
-        currentNumQuestion ++
-        setQuestion(questionsObject[currentNumQuestion].question)
         setCurrentPrompt('')
     }
 
