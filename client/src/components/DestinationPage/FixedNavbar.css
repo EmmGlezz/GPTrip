@@ -1,0 +1,19 @@
+.navbar-config {
+    background-color: transparent;
+    color: white !important;
+    /* height: 80px; */
+    transition: 1s ease;
+}
+
+.navbar-scrolled {
+    background-color: white;
+    transition: 1s ease;
+    color: black !important;
+    /* height: 80px; */
+}
+
+.navbar-config.active {
+    background-color: #17191E;
+    transition: 0.1s;
+    color: white;
+}

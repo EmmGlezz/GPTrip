@@ -19,21 +19,21 @@ const userParameters = {
 
 const travelParameters = `With this json object, plan my trip including names and links to external resources (like websites, and images or videos), and format it on json too
 make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
-- Name of the destination, state, country, country flag image, description, nearest airport, coordinates, best months to travel in, local currency, image and website.
-- Current location, including name, nearest airport, country, country flag image.
+- Name of the destination, state, country, description, nearest airport, coordinates, best months to travel in, local currency, and website.
+- Current location, including name, nearest airport, country.
 - The dates.
 - The budget, including currency.
-- At least 3 different options for accomodations, and each accomodation includes the name, image, website, star rating and average night cost with currency.
-- At least 3 different options to get from current location to destination, like plane tickets, ships, or any other type, and each option includes the name, type, company_logo, website, and cost with currency.
-- At least 2 types of transportation locally, and each transportation includes, the type, and image, and a website.
-- At least 5 different activities, and each activity includes the type, short description, average cost with currency, an image and a website.
+- At least 3 different options for accomodations, and each accomodation includes the name,  website, star rating and average night cost with currency.
+- At least 3 different options to get from current location to destination, like plane tickets, ships, or any other type, and each option includes the name, type, website, and cost with currency.
+- At least 2 types of transportation locally, and each transportation includes, the type, and a website.
+- At least 5 different activities, and each activity includes the type, short description, average cost with currency, and a website.
 - Group style.
 - Travel style. 
 : ${JSON.stringify(userParameters)}`
 
-// openAi.createChatCompletion({
-//     model: "gpt-3.5-turbo",
-//     messages: [{role: 'user', content: travelParameters}]
-// }).then( res => {
-//     console.log(res.data.choices[0].message.content)
-// })
+openAi.createChatCompletion({
+    model: "gpt-3.5-turbo",
+    messages: [{role: 'user', content: travelParameters}],
+}).then( res => {
+    console.log(res.data.choices[0].message.content)
+})
