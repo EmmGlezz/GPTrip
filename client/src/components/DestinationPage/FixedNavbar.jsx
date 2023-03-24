@@ -1,4 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react'
+import { Link } from "react-router-dom";
+import Home from '../Home/Home';
 
 import './FixedNavbar.css'
 
@@ -25,7 +27,9 @@ const FixedNavbar = () => {
   return (
     <div className={`w-full h-24 flex justify-between px-20 text-white items-center fixed ${navBackground ? 'navbar-scrolled' : 'navbar-config'}`}>
         <div>
+         <Link to='/'>
             <h1 className='text-4xl'>GPTrip</h1>
+         </Link> 
         </div>
         <div>
             <ul className='flex gap-x-4 text-xl'>
