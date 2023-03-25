@@ -56,24 +56,24 @@ const DestinationPage = ({userParams}) => {
   }
 
   // Data fetching
-  useEffect(() => {
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   fetchData()
+  // }, [])
   
   
-  const fetchData = async () => {
-    const response = await fetch("http://localhost:5500/api/destination", {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(userParams)
-    });
-    const dataReceived = await response.json();
-    console.log(dataReceived);
-    setData(dataReceived)
-  }
+  // const fetchData = async () => {
+  //   const response = await fetch("http://localhost:5500/api/destination", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(userParams)
+  //   });
+  //   const dataReceived = await response.json();
+  //   console.log(dataReceived);
+  //   setData(dataReceived)
+  // }
 
   return(
   isLoading ? (<LoadingPage percentage={loadingPercentage}/>) : (
