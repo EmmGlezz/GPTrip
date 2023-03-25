@@ -10,17 +10,19 @@ const getDestinationInfo = async (req, res) => {
             apiKey: process.env.OPENAI_API_KEY
         }))
         const accessKey = 'Va1CF5RDR-Qen35qKs0_OyZFwCGPy2Ds5GYUAGiX4HA'
+
+        console.log(req.body)
         
         
-        const userParameters = {
-            destination: 'Somewhere with beaches',
-            dates: 'Between august and september and my dates are flexible',
-            budget: 'A maximum of $6000 dollars, this is not flexible',
-            current_location: 'Mexico City',
-            preferences: 'We want to stay in a hotel with bonfires, we want to rent a car and we would prefer a luxury hotel',
-            group_size: 'We are 3 people, including a kid',
-            travel_style: 'we want something relaxing'
-          }
+        // const userParameters = {
+        //     destination: 'Somewhere with beaches',
+        //     dates: 'Between august and september and my dates are flexible',
+        //     budget: 'A maximum of $6000 dollars, this is not flexible',
+        //     current_location: 'Mexico City',
+        //     preferences: 'We want to stay in a hotel with bonfires, we want to rent a car and we would prefer a luxury hotel',
+        //     group_size: 'We are 3 people, including a kid',
+        //     travel_style: 'we want something relaxing'
+        //   }
         
         const travelParameters = `With this json object, plan my trip including names and links to external resources (like websites, and images or videos), and format it on json too
         make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
@@ -34,7 +36,7 @@ const getDestinationInfo = async (req, res) => {
         - At least 5 different activities (json property has to be named activities), and each activity includes the type, short description, average cost (json property has to be named amount) with currency, and a website.
         - Group style.
         - Travel style. 
-        : ${JSON.stringify(userParameters)}`
+        : ${JSON.stringify(req.body)}`
         
         const response = await openAi.createChatCompletion({
             model: "gpt-3.5-turbo",

@@ -31,7 +31,7 @@ const starRating = (stars) => {
 
 
 
-const DestinationPage = () => {
+const DestinationPage = ({userParams}) => {
   const [data, setData] = useState()
 
   //Loading Functionality
@@ -68,6 +68,7 @@ const DestinationPage = () => {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
+      body: JSON.stringify(userParams)
     });
     const dataReceived = await response.json();
     console.log(dataReceived);

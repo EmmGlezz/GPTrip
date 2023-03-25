@@ -4,6 +4,7 @@ import Footer from './Footer'
 import Form from '../Form/Form'
 import Subtitles from './Subtitles'
 import './Home.css'
+import { useNavigate } from 'react-router-dom'
 
 const randomIntFromInterval = (min, max) => { // min and max included 
   return Math.floor(Math.random() * (max - min + 1) + min)
@@ -13,11 +14,13 @@ const rndInt = randomIntFromInterval(1, 6)
 
 
 
-const Home = () => {
-  const [userParams, setUserParams] = useState()
+const Home = ({getUserParams}) => {
+  // const [userParams, setUserParams] = useState()
+  const navigate = useNavigate();
 
   const getUserParameters = (userParameters) => {
-    setUserParams(userParameters)
+    getUserParams(userParameters)
+    navigate("/destination");
   }
 
   return (

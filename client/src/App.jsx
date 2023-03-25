@@ -9,13 +9,17 @@ import './App.css'
 
 
 const App = () => {
+  const [params, setParams] = useState()
+  const getUserParams = (params) => {
+    setParams(params)
+  }
 
   return (
     <div>
       <BrowserRouter>
       <Routes>
-        <Route path="/" exact element={<Home />} />
-        <Route path="/destination" exact element={<DestinationPage />} />
+        <Route path="/" exact element={<Home getUserParams={getUserParams} />} />
+        <Route path="/destination" exact element={<DestinationPage userParams={params} />} />
       </Routes>
       </BrowserRouter>
     </div>
