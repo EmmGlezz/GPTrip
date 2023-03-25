@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import LoadingPage from './LoadingPage/LoadingPage'
 import FixedNavbar from './FixedNavbar'
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import {MdHotel} from 'react-icons/md'
@@ -32,8 +33,29 @@ const starRating = (stars) => {
 
 const DestinationPage = () => {
   const [data, setData] = useState()
-  const [isLoading, setLoading] = useState(true);
 
+  //Loading Functionality
+  const [isLoading, setLoading] = useState(true);
+  const [loadingPercentage, setLoadingPercentage] = useState(0)
+
+  if(!data) {
+    if (loadingPercentage < 60) {
+      setTimeout(() => {
+        setLoadingPercentage(loadingPercentage + 1)
+      }, 1000)
+    }
+  } else {
+    if (loadingPercentage < 100) {
+      setTimeout(() => {
+        setLoadingPercentage(loadingPercentage + 1)
+      }, 50)
+    }
+    if (isLoading && loadingPercentage === 100) {
+      setLoading(false)
+    }
+  }
+
+  // Data fetching
   useEffect(() => {
     fetchData()
   }, [])
@@ -48,17 +70,12 @@ const DestinationPage = () => {
       },
     });
     const dataReceived = await response.json();
-    // setData(dataReceived)
     console.log(dataReceived);
     setData(dataReceived)
-    setLoading(false);
   }
-  // const accommodationsWord = data.accomodations ? 'accomodations' : 'accommodations'
-  console.log(isLoading)
+
   return(
-  isLoading ? (<div>
-    <h1>Loading</h1>
-  </div>) : (
+  isLoading ? (<LoadingPage percentage={loadingPercentage}/>) : (
       <div className=''>
         <div className='bg-slate-600'>
               <FixedNavbar />
@@ -81,11 +98,11 @@ const DestinationPage = () => {
   
         {/* COUNTRY FLAGS */}
         <div className='mx-40 mt-24'>
-          <div className='flex w-full justify-center items-center'>
+          {/* <div className='flex w-full justify-center items-center'>
             <img src={`https://www.countryflags.com/wp-content/uploads/${data.current_location.country.toLowerCase().split(' ').join('-')}-flag-png-large.png`} className='w-1/5' alt="" />
             <TbArrowRightRhombus className='text-5xl' />
             <img src={`https://www.countryflags.com/wp-content/uploads/${data.destination.country.toLowerCase().split(' ').join('-')}-flag-png-large.png`} className='w-1/5' height='100%' alt="" />
-          </div>
+          </div> */}
   
           {/* DATES AND BUDGET */}
           <div className='flex justify-around mx-40 mt-24'>
@@ -129,7 +146,7 @@ const DestinationPage = () => {
               </div>
               <div>
                 <p className='text-lg font-bold'>Time Zone</p>
-                <p></p>
+                <p>{data.destination.timezone}</p>
               </div>
             </div>
             <hr className='my-8' />

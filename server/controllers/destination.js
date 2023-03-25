@@ -26,7 +26,7 @@ const getDestinationInfo = async (req, res) => {
         make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
         - Name of the destination, state, country, description, nearest airport, coordinates, best months to travel in (json key has to be named best_months_to_travel_in, it has to be an array with string of the months), local currency, timezone, and website.
         - Current location, including name, nearest airport, country.
-        - The dates.
+        - The dates (json value has to be a string).
         - The budget, including currency.
         - At least 3 different options for accomodations (IMPORTANT json key has to be named accomodations WITH JUST ONE M BETWEEN THE O'S), and each accomodation includes the name,  website, star rating and average night cost (json key has to be named average_night_cost) with currency.
         - At least 3 different options to get from current location to destination (json property has to be named transportation_to_destination), like plane tickets, ships, or any other type, and each option includes the name, type, website, and cost with currency.
