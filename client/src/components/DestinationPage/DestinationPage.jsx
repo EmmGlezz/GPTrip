@@ -48,7 +48,7 @@ const DestinationPage = ({userParams}) => {
     if (loadingPercentage < 100) {
       setTimeout(() => {
         setLoadingPercentage(loadingPercentage + 1)
-      }, 50)
+      }, 5)
     }
     if (isLoading && loadingPercentage === 100) {
       setLoading(false)
@@ -56,28 +56,34 @@ const DestinationPage = ({userParams}) => {
   }
 
   // Data fetching
-  // useEffect(() => {
-  //   fetchData()
-  // }, [])
+  useEffect(() => {
+
+    if (window.localStorage.getItem("DESTINATION_DATA") !== null) {
+      const data = window.localStorage.getItem('DESTINATION_DATA')
+      setData(JSON.parse(data))
+    } else {
+      const fetchData = async () => {
+        const response = await fetch("http://localhost:5500/api/destination", {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(userParams)
+        });
+        const dataReceived = await response.json();
+        console.log(dataReceived);
+        setData(dataReceived)
+        window.localStorage.setItem('DESTINATION_DATA', JSON.stringify(dataReceived))
+      }
+      fetchData()
+    }
+  }, [])
   
-  
-  // const fetchData = async () => {
-  //   const response = await fetch("http://localhost:5500/api/destination", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(userParams)
-  //   });
-  //   const dataReceived = await response.json();
-  //   console.log(dataReceived);
-  //   setData(dataReceived)
-  // }
 
   return(
   isLoading ? (<LoadingPage percentage={loadingPercentage}/>) : (
-      <div className=''>
+      <div className='bg-slate-200'>
         <div className='bg-slate-600'>
               <FixedNavbar />
         </div>
@@ -90,7 +96,7 @@ const DestinationPage = ({userParams}) => {
         }}>
           <div className='text-center'>
             <h1 className='text-5xl'>{data.destination.name}</h1>
-            <h2 className='text-3xl'>{`${data.destination.state}, ${data.destination.country}`}</h2>
+            <h2 className='text-3xl'>{`${data.destination.country}`}</h2>
           </div>
         </div>
         <div className='flex w-full justify-center'>
@@ -126,7 +132,7 @@ const DestinationPage = ({userParams}) => {
           <div className='flex'>
             <div className='w-4/6'>
               <h2 className='text-4xl'>What to know before visiting {data.destination.name}</h2>
-              <h4 className='text-2xl'>{data.destination.state}, {data.destination.country}</h4>
+              <h4 className='text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
               <p>{data.destination.description}</p>
               <a href={data.destination.website}><p>{data.destination.website}</p></a>
             </div>

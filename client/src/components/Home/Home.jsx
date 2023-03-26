@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import Form from '../Form/Form'
@@ -22,6 +22,12 @@ const Home = ({getUserParams}) => {
     getUserParams(userParameters)
     navigate("/destination");
   }
+
+  useEffect(() => {
+    if(window.localStorage.getItem("DESTINATION_DATA") !== null) {
+      window.localStorage.removeItem('DESTINATION_DATA')
+    }
+  }, [])
 
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen" style={{
