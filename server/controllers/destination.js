@@ -36,6 +36,8 @@ const getDestinationInfo = async (req, res) => {
         })
 
         const imagesResponse = await images.json()
+        console.log(process.env.UNSPLASH_KEY)
+        console.log(imagesResponse)
         data.destination.images = imagesResponse.results
         
         res.send(data)
