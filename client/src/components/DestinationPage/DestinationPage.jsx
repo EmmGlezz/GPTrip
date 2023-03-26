@@ -3,7 +3,12 @@ import LoadingPage from './LoadingPage/LoadingPage'
 import FixedNavbar from './FixedNavbar'
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
 import {MdHotel} from 'react-icons/md'
-import {TbArrowRightRhombus} from 'react-icons/tb'
+import {SiGoogleearth, SiGooglemaps} from 'react-icons/si'
+import {FaPlaneArrival} from 'react-icons/fa'
+import {BsCurrencyExchange} from 'react-icons/bs'
+import {RiMapPinTimeFill} from 'react-icons/ri'
+import {TbWorldWww} from 'react-icons/tb'
+// import {TbArrowRightRhombus} from 'react-icons/tb'
 
 import './DestinationPage.css'
 
@@ -27,7 +32,6 @@ const starRating = (stars) => {
   }
   return starsArray
 }
-
 
 
 
@@ -94,7 +98,7 @@ const DestinationPage = ({userParams}) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}>
-          <div className='text-center'>
+          <div className='text-center glass py-4 px-10'>
             <h1 className='text-5xl'>{data.destination.name}</h1>
             <h2 className='text-3xl'>{`${data.destination.country}`}</h2>
           </div>
@@ -128,30 +132,61 @@ const DestinationPage = ({userParams}) => {
         </div>
   
         {/* DESTINATION INFO */}
-        <div className='mx-40 mt-24'>
+        <div className='py-24 mt-24 text-white' style={{
+          backgroundImage: `url(${data.destination.images[0].urls.full})`,
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}>
+          <div className='mx-40 glass-darker p-10'>
           <div className='flex'>
-            <div className='w-4/6'>
+            <div className='w-4/6 flex flex-col gap-y-3'>
               <h2 className='text-4xl'>What to know before visiting {data.destination.name}</h2>
-              <h4 className='text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
+              <div className='inline-flex gap-x-5'>
+                <h4 className='text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
+                <img
+                  src="https://flagcdn.com/32x24/es.png"
+                  srcset="https://flagcdn.com/64x48/es.png 2x,
+                    https://flagcdn.com/96x72/es.png 3x"
+                  width="32"
+                  height="24"
+                  alt={data.destination.country} />
+              </div>
               <p>{data.destination.description}</p>
-              <a href={data.destination.website}><p>{data.destination.website}</p></a>
+              <div className='flex gap-x-4 items-center'>
+                <TbWorldWww />
+                <a href={data.destination.website}><p>{data.destination.website}</p></a>
+              </div>
             </div>
-            <div className='w-2/6'>
-              <p>INSERT GEOLOCATION HERE</p>
+            <div className='w-2/6 flex flex-col items-center justify-center gap-y-4'>
+              <a className='flex items-center justify-center gap-x-2 bg-green-800 p-2 rounded-lg' href={`https://www.google.com/maps/search/${data.destination.coordinates.latitude},${data.destination.coordinates.longitude}/`} target='_blank'>
+                <SiGooglemaps />
+                <button>Google Maps</button>
+              </a>
+              <a className='flex items-center justify-center gap-x-2 bg-sky-700 p-2 rounded-lg' href={`https://earth.google.com/web/search/${data.destination.coordinates.latitude},${data.destination.coordinates.longitude}/`} target='_blank'>
+                <SiGoogleearth />
+                <button>Google Earth</button>
+              </a>
+              
+
             </div>
           </div>
           <hr className='my-8'/>
           <div className=''>
             <div className='w-full flex justify-around text-center'>
-              <div>
+              <div className='flex flex-col items-center justify-center'>
+                <FaPlaneArrival className='text-3xl' />
                 <p className='text-lg font-bold'>Nearest Airport</p>
                 <p>{data.destination.nearest_airport}</p>
               </div>
-              <div>
+              <div className='flex flex-col items-center justify-center'>
+                <BsCurrencyExchange className='text-3xl' />
                 <p className='text-lg font-bold'>Local currency</p>
                 <p>{data.destination.local_currency}</p>
               </div>
-              <div>
+              <div className='flex flex-col items-center justify-center'>
+                <RiMapPinTimeFill className='text-3xl' />
                 <p className='text-lg font-bold'>Time Zone</p>
                 <p>{data.destination.timezone}</p>
               </div>
@@ -166,6 +201,7 @@ const DestinationPage = ({userParams}) => {
   
           </div>
           <hr className='my-8' />
+          </div>
         </div>
   
         {/* IMAGES */}
