@@ -146,9 +146,9 @@ const DestinationPage = ({userParams}) => {
               <div className='inline-flex gap-x-5'>
                 <h4 className='text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
                 <img
-                  src="https://flagcdn.com/32x24/es.png"
-                  srcset="https://flagcdn.com/64x48/es.png 2x,
-                    https://flagcdn.com/96x72/es.png 3x"
+                  src={`https://flagcdn.com/32x24/${data.destination.country_code.toLowerCase()}.png`}
+                  srcset={`https://flagcdn.com/64x48/${data.destination.country_code.toLowerCase()}.png 2x,
+                    https://flagcdn.com/96x72/${data.destination.country_code.toLowerCase()}.png 3x`}
                   width="32"
                   height="24"
                   alt={data.destination.country} />
