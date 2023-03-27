@@ -78,7 +78,7 @@ const Form = ({sendUserParameters}) => {
   return (
     <form onSubmit={handleSubmit} className='w-full my-0 mx-auto p-3 flex flex-col gap-3 items-center'>
         {/* <label className='w-full text-2xl'>Whats your destination?</label> */}
-        <div className='text-2xl flex justify-between items-center px-3 w-full'>
+        <div className='text-lg md:text-2xl flex justify-between items-center px-3 w-full'>
             <div></div>
             <Typewriter 
                 // onInit={(typewriter) => {
@@ -101,7 +101,7 @@ const Form = ({sendUserParameters}) => {
         {console.log(userParameters)} */}
         <div className='w-full my-0 mx-auto p-3 flex gap-3 items-center glassForm'>
             <textarea onChange={(e) => setCurrentPrompt(e.target.value)} value={currentPrompt}
-            className='w-full text-lg p-3 bg-transparent rounded-md border-none outline-none resize-none' name="prompt" id="prompt" cols='1' rows="1" placeholder=''>
+            className='w-full text-base md:text-lg p-3 bg-transparent rounded-md border-none outline-none resize-none' name="prompt" id="prompt" cols='1' rows="1" placeholder=''>
             </textarea>
             <button className='outline-none border-none cursor-pointer bg-transparent' type='submit'><AiOutlineSend className='text-xl' /></button>
         </div>

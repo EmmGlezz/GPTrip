@@ -3,7 +3,7 @@ import Typewriter from 'typewriter-effect';
 
 const Subtitles = () => {
   return (
-    <div className='flex flex-col items-center justify-center font-bold text-white'>
+    <div className='flex flex-col items-center justify-center font-bold text-white text-center text-xl md:text-5xl'>
         <h2>LET <span className='font-normal'>GPTrip</span> BE YOUR GUIDE TO</h2>
         <Typewriter
             onInit={(typewriter) => {
