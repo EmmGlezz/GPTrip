@@ -13,7 +13,7 @@ const Navbar = () => {
 						<div className='md:py-5 md:block'>
 							<h2 className='text-3xl font-bold text-white'>GPTrip</h2>
 						</div>
-						<div className='md:hidden'>
+						<div className='md:hidden text-white'>
 							<button onClick={() => setNavbar(!navbar)}>
 								{navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
 							</button>
