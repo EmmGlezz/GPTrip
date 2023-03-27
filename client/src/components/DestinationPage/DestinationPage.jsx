@@ -87,7 +87,7 @@ const DestinationPage = ({userParams}) => {
 
   return(
   isLoading ? (<LoadingPage percentage={loadingPercentage}/>) : (
-      <div className='bg-slate-200'>
+      <div className='bg-slate-100'>
         <div className='bg-slate-600'>
               <FixedNavbar />
         </div>
@@ -212,39 +212,51 @@ const DestinationPage = ({userParams}) => {
   
         {/* HOTELS */}
         <div className='mx-40 mt-24'>
-          <div>
-            <h2 className='text-4xl'>Recommended Hotels</h2>
+          <div className='flex justify-center xl:justify-start'>
+            <h2 className='text-4xl text-center md:text-left'>Recommended Hotels</h2>
           </div>
-          <div className='flex items-center justify-around mt-5' >
-            {Object.hasOwn(data, 'accomodations') ? data.accomodations.map((accomodation, idx) => (
-              <div className='flex items-center'>
-                <div className='mx-4'>
-                  <MdHotel className='text-5xl' />
-                </div>
-                <div className='flex flex-col'>
-                  <p>{accomodation.name}</p>
-                  <div className='flex'>
-                    {starRating(accomodation.star_rating)}
+          <div className='flex flex-col items-center xl:items-stretch'>
+            <div className='mt-5 xl:flex xl:justify-between' >
+              {Object.hasOwn(data, 'accomodations') ? data.accomodations.map((accomodation, idx) => (
+                <div className='flex my-8 xl:my-0 flex-col justify-center min-h-min min-w-fit w-80 bg-slate-50 shadow rounded-lg p-5 gap-y-2'>
+                  <div className=''>
+                    <MdHotel className='text-5xl' />
                   </div>
-                  <p>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
-                  <a href={accomodation.website} target='_blank'><button type='button'>VISIT WEBSITE</button></a>
-                </div>
-              </div>
-            )) : data.accommodations.map((accomodation, idx) => (
-              <div className='flex items-center'>
-                <div className='mx-4'>
-                  <MdHotel className='text-5xl' />
-                </div>
-                <div className='flex flex-col'>
-                  <p>{accomodation.name}</p>
-                  <div className='flex'>
-                    {starRating(accomodation.star_rating)}
+                  <div className='flex flex-col'>
+                    <div className='flex text-amber-600'>
+                      {starRating(accomodation.star_rating)}
+                    </div>
+                    <p className='font-bold text-lg'>{accomodation.name}</p>
+                    <p className='text-sm'>{data.destination.name}</p>
                   </div>
-                  <p>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
-                  <a href={accomodation.website} target='_blank'><button type='button'>VISIT WEBSITE</button></a>
+                  <hr className='w-full' />
+                  <div>
+                    <div className='flex gap-x-2'>
+                      <p>Avg:</p>
+                      <p className='font-bold'>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
+                      <p>/night</p>
+                    </div>
+                  </div>
+                  <div>
+                    <a href={accomodation.website} target='_blank'><button type='button' className='bg-amber-600 w-full rounded-lg text-white'>VISIT WEBSITE</button></a>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )) : data.accommodations.map((accomodation, idx) => (
+                <div className='flex items-center'>
+                  <div className='mx-4'>
+                    <MdHotel className='text-5xl' />
+                  </div>
+                  <div className='flex flex-col'>
+                    <p>{accomodation.name}</p>
+                    <div className='flex'>
+                      {starRating(accomodation.star_rating)}
+                    </div>
+                    <p>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
+                    <a href={accomodation.website} target='_blank'><button type='button'>VISIT WEBSITE</button></a>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
   
