@@ -63,7 +63,7 @@ const LoadingPage = ({ percentage }) => {
 
 	return (
 		<div className='w-screen h-screen flex flex-col items-center justify-center bg-slate-200'>
-			<div className='absolute mb-96 w-2/5 h-40 flex items-center justify-center rounded-md animate-bounce'>
+			<div className='absolute mb-96 w-4/5 md:w-2/5 h-40 flex items-center justify-center rounded-md animate-bounce'>
 				<div className='glass mx-4 p-4 '>
 					<h1 className='text-2xl'>Did you know that?</h1>
 					<p className=''>{fact}</p>
