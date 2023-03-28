@@ -7,7 +7,8 @@ import {SiGoogleearth, SiGooglemaps} from 'react-icons/si'
 import {FaPlaneArrival} from 'react-icons/fa'
 import {BsCurrencyExchange} from 'react-icons/bs'
 import {RiMapPinTimeFill} from 'react-icons/ri'
-import {TbWorldWww} from 'react-icons/tb'
+import {TbWorldWww, TbClockHour4} from 'react-icons/tb'
+import {GrLocation} from 'react-icons/gr'
 // import {TbArrowRightRhombus} from 'react-icons/tb'
 
 import './DestinationPage.css'
@@ -227,7 +228,7 @@ const DestinationPage = ({userParams}) => {
                       {starRating(accomodation.star_rating)}
                     </div>
                     <p className='font-bold text-lg'>{accomodation.name}</p>
-                    <p className='text-sm'>{data.destination.name}</p>
+                    <p className='text-sm'>{accomodation.place}</p>
                   </div>
                   <hr className='w-full' />
                   <div>
@@ -242,17 +243,27 @@ const DestinationPage = ({userParams}) => {
                   </div>
                 </div>
               )) : data.accommodations.map((accomodation, idx) => (
-                <div className='flex items-center'>
-                  <div className='mx-4'>
+                <div className='flex my-8 xl:my-0 flex-col justify-center min-h-min min-w-fit w-80 bg-slate-50 shadow rounded-lg p-5 gap-y-2'>
+                  <div className=''>
                     <MdHotel className='text-5xl' />
                   </div>
                   <div className='flex flex-col'>
-                    <p>{accomodation.name}</p>
-                    <div className='flex'>
+                    <div className='flex text-amber-600'>
                       {starRating(accomodation.star_rating)}
                     </div>
-                    <p>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
-                    <a href={accomodation.website} target='_blank'><button type='button'>VISIT WEBSITE</button></a>
+                    <p className='font-bold text-lg'>{accomodation.name}</p>
+                    <p className='text-sm'>{accomodation.place}</p>
+                  </div>
+                  <hr className='w-full' />
+                  <div>
+                    <div className='flex gap-x-2'>
+                      <p>Avg:</p>
+                      <p className='font-bold'>{accomodation.average_night_cost.amount} {accomodation.average_night_cost.currency}</p>
+                      <p>/night</p>
+                    </div>
+                  </div>
+                  <div>
+                    <a href={accomodation.website} target='_blank'><button type='button' className='bg-amber-600 w-full rounded-lg text-white'>VISIT WEBSITE</button></a>
                   </div>
                 </div>
               ))}
@@ -303,22 +314,43 @@ const DestinationPage = ({userParams}) => {
         </div>
   
         {/* ACTIVITIES */}
-        <div className='mx-40 mt-24'>
+        <div className='mx-20 lg:mx-40 mt-24 pb-28'>
           <div>
             <h2 className='text-4xl'>What to do in there</h2>
           </div>
-          <div className='grid gap-5 grid-cols-2 items-center justify-center mt-5' >
+          <div className='grid gap-5 grid-cols-1 lg:grid-cols-2 items-center justify-center mt-5' >
             {data.activities.map((activity, idx) => (
-              <div className='flex flex-col text-center items-center'>
-                <div className='mx-4'>
-                  <MdHotel className='text-5xl' />
-                </div>
+              <div className='flex flex-col items-start bg-slate-50 shadow rounded-lg p-5 gap-y-2'>
                 <div className='flex flex-col'>
-                  <p>{activity.type}</p>
-                  <p>{activity.short_description}</p>
-                  <p>{activity.amount.amount} {activity.amount.currency}</p>
-                  <a href={activity.website} target='_blank'><button type='button'>VISIT WEBSITE</button></a>
+                  <div>
+                    <div className='flex gap-x-2 items-center text-sm'>
+                      <GrLocation />
+                      <p>{activity.place}</p>
+                    </div>
+                    <p className='text-xl font-bold'>{activity.name}</p>
+                    <p>{activity.type}</p>
+                    <p>{activity.short_description}</p>
+                    <div className='flex gap-x-2 items-center'>
+                      <AiFillStar className='text-amber-600' />
+                      {activity.stars}
+                    </div>
+                  </div>
                 </div>
+                <hr className='w-full' />
+                <div className='flex items-center justify-between w-full'>
+                  <div className='flex gap-x-2 items-center'>
+                    <p className='text-sm'>From:</p>
+                    <p className='font-bold'>{activity.amount.amount} {activity.amount.currency}</p>
+                  </div>
+                  <div className='flex gap-x-2 items-center'>
+                    <TbClockHour4 />
+                    <div className='flex gap-x-1 items-center'>
+                      {activity.duration}
+                      <p>hours</p>
+                    </div>
+                  </div>
+                </div>
+                <a href={activity.website} target='_blank' className='w-full'><button type='button' className='bg-sky-700 py-1 w-full rounded-lg text-white' >VISIT WEBSITE</button></a>
               </div>
             ))}
           </div>
