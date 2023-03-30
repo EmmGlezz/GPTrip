@@ -10,7 +10,7 @@ const getDestinationInfo = async (req, res) => {
             apiKey: process.env.OPENAI_API_KEY
         }))
 
-        console.log(req.body)
+        console.log('Received: ', req.body)
         const travelParameters = `With this json object, plan my trip including names and links to external resources (like websites, and images or videos), and format it on json too
         make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
         - Name of the destination, state, country, country code (ISO 3166), description, nearest airport, coordinates (json property called coordinates, with a json object with latitude and longitude), best months to travel in (json key has to be named best_months_to_travel_in, it has to be an array with string of the months), local currency, timezone, and website.
