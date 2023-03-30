@@ -68,7 +68,7 @@ const DestinationPage = ({userParams}) => {
       setData(JSON.parse(data))
     } else {
       const fetchData = async () => {
-        const response = await fetch("http://localhost:5500/api/destination", {
+        const response = await fetch("https://gptrip-server.onrender.com/api/destination", {
           method: 'POST',
           headers: {
             'Accept': 'application/json',
