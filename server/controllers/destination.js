@@ -24,13 +24,15 @@ const getDestinationInfo = async (req, res) => {
         - Group style.
         - Travel style. 
         : ${JSON.stringify(req.body)}`
+
+        console.log(travelParameters)
         
         const response = await openAi.createChatCompletion({
             model: "gpt-3.5-turbo",
             messages: [{role: 'user', content: travelParameters}],
         })
         const data = await JSON.parse(response.data.choices[0].message.content)
-
+        console.log(data)
         const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&client_id=${process.env.UNSPLASH_KEY}&page=1&per_page=4`, {
             method: 'GET'
         })
