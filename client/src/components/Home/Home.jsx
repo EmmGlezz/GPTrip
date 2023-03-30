@@ -11,6 +11,7 @@ const randomIntFromInterval = (min, max) => { // min and max included
 }
 const rndInt = randomIntFromInterval(1, 6)
 
+import backgroundImg from `./background${rndInt}.jpg`;
 
 
 
@@ -31,7 +32,7 @@ const Home = ({getUserParams}) => {
 
   return (
     <div className="flex flex-col justify-between items-center w-screen h-screen" style={{
-      backgroundImage: `url('src/assets/background${rndInt}.jpg')`,
+      backgroundImage: `url(${backgroundImg})`,
       backgroundAttachment: 'fixed',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
