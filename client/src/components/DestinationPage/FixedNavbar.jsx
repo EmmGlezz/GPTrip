@@ -30,7 +30,9 @@ const FixedNavbar = () => {
       <div>
         <div className='flex items-center justify-between py-3'>
           <div className='md:py-5 md:block'>
-            <h2 className='text-3xl font-bold '>GPTrip</h2>
+            <a href="/">
+              <img src="/logo.png" alt="Logo" className="h-14 md:h-20" style={navBackground ? {filter: "invert(100%) sepia(5%) saturate(19%) hue-rotate(335deg) brightness(102%) contrast(100%)"} : {}} />
+            </a>
           </div>
           <div className='md:hidden '>
             <button onClick={() => setNavbar(!navbar)}>
