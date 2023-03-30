@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useRef} from 'react'
 import { Link } from "react-router-dom";
 import Home from '../Home/Home';
-
+import { IoMdMenu, IoMdClose } from 'react-icons/io'
 import './FixedNavbar.css'
 
 const FixedNavbar = () => {
@@ -25,20 +25,35 @@ const FixedNavbar = () => {
     }, [])
 
   return (
-    <div className={`w-full h-24 flex justify-between px-20 text-white items-center fixed ${navBackground ? 'navbar-scrolled' : 'navbar-config'}`}>
-        <div>
-         <Link to='/'>
-            <h1 className='text-4xl'>GPTrip</h1>
-         </Link> 
+    <header className={`w-full mx-auto px-4 sm:px-20 z-50 fixed ${navBackground ? 'navbar-scrolled' : 'navbar-config'}`}>
+    <div className='justify-between md:items-center md:flex'>
+      <div>
+        <div className='flex items-center justify-between py-3'>
+          <div className='md:py-5 md:block'>
+            <h2 className='text-3xl font-bold '>GPTrip</h2>
+          </div>
+          <div className='md:hidden '>
+            <button onClick={() => setNavbar(!navbar)}>
+              {navbar ? <IoMdClose size={30} /> : <IoMdMenu size={30} />}
+            </button>
+          </div>
         </div>
-        <div>
-            <ul className='flex gap-x-4 text-xl'>
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
-            </ul>
+      </div>
+      <div>
+        <div
+          className={`flex-1 justify-self-center pb-3 mt-8 md:block md:pb-0 md:mt-0 ${
+            navbar ? "block" : "hidden"
+          }`}
+        >
+          <div className='items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0'>
+            <Link to='/' onClick={() => setNavbar(!navbar)} className="block lg:inline-block hover:text-neutral-500 ">
+              Home
+            </Link>
+          </div>
         </div>
+      </div>
     </div>
+  </header>
   )
 }
 
