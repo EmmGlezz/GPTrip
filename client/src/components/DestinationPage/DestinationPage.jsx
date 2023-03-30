@@ -108,21 +108,14 @@ const DestinationPage = ({userParams}) => {
           <img className='w-3/5 rounded-xl mainImage' src={data.destination.images[1].urls.regular} alt="" />
         </div>
   
-        {/* COUNTRY FLAGS */}
-        <div className='mx-40 mt-24'>
-          {/* <div className='flex w-full justify-center items-center'>
-            <img src={`https://www.countryflags.com/wp-content/uploads/${data.current_location.country.toLowerCase().split(' ').join('-')}-flag-png-large.png`} className='w-1/5' alt="" />
-            <TbArrowRightRhombus className='text-5xl' />
-            <img src={`https://www.countryflags.com/wp-content/uploads/${data.destination.country.toLowerCase().split(' ').join('-')}-flag-png-large.png`} className='w-1/5' height='100%' alt="" />
-          </div> */}
-  
-          {/* DATES AND BUDGET */}
-          <div className='flex justify-around mx-40 mt-24'>
+        {/* DATES AND BUDGET */}
+        <div className=' mt-24 w-full'>
+          <div className='flex justify-around'>
             <div className='text-center'>
               <p className='text-2xl font-bold'>Dates</p>
               <p className='text-lg'>{data.dates}</p>
             </div>
-            <div className='text-center'>
+            <div className='text-center flex flex-col items-center'>
               <p className='text-2xl font-bold'>Budget</p>
               <div className='flex gap-x-2'>
                 <p className='text-lg'>{data.budget.amount}</p>
@@ -140,12 +133,12 @@ const DestinationPage = ({userParams}) => {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}>
-          <div className='mx-40 glass-darker p-10'>
-          <div className='flex'>
-            <div className='w-4/6 flex flex-col gap-y-3'>
-              <h2 className='text-4xl'>What to know before visiting {data.destination.name}</h2>
+          <div className='mx-2 lg:mx-40 glass-darker p-10'>
+          <div className=' md:flex'>
+            <div className=' md:w-4/6 flex flex-col gap-y-3'>
+              <h2 className='text-3xl md:text-4xl'>What to know before visiting {data.destination.name}</h2>
               <div className='inline-flex gap-x-5'>
-                <h4 className='text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
+                <h4 className='text-xl md:text-2xl'>{data.destination.state ? `${data.destination.state}, ` : ''}{data.destination.country}</h4>
                 <img
                   src={`https://flagcdn.com/32x24/${data.destination.country_code.toLowerCase()}.png`}
                   srcset={`https://flagcdn.com/64x48/${data.destination.country_code.toLowerCase()}.png 2x,
@@ -160,7 +153,7 @@ const DestinationPage = ({userParams}) => {
                 <a href={data.destination.website}><p>{data.destination.website}</p></a>
               </div>
             </div>
-            <div className='w-2/6 flex flex-col items-center justify-center gap-y-4'>
+            <div className='flex items-center justify-around mt-4 md:mt-0 md:flex-col md:justify-center md:w-2/6 gap-y-4'>
               <a className='flex items-center justify-center gap-x-2 bg-green-800 p-2 rounded-lg' href={`https://www.google.com/maps/search/${data.destination.coordinates.latitude},${data.destination.coordinates.longitude}/`} target='_blank'>
                 <SiGooglemaps />
                 <button>Google Maps</button>
@@ -176,20 +169,20 @@ const DestinationPage = ({userParams}) => {
           <hr className='my-8'/>
           <div className=''>
             <div className='w-full flex justify-around text-center'>
-              <div className='flex flex-col items-center justify-center'>
-                <FaPlaneArrival className='text-3xl' />
-                <p className='text-lg font-bold'>Nearest Airport</p>
-                <p>{data.destination.nearest_airport}</p>
+              <div className='flex flex-col items-center justify-center w-2/6'>
+                <FaPlaneArrival className='text-2xl md:text-3xl' />
+                <p className='text-base md:text-lg font-bold'>Nearest Airport</p>
+                <p className='text-sm md:text-base'>{data.destination.nearest_airport}</p>
               </div>
-              <div className='flex flex-col items-center justify-center'>
-                <BsCurrencyExchange className='text-3xl' />
-                <p className='text-lg font-bold'>Local currency</p>
-                <p>{data.destination.local_currency}</p>
+              <div className='flex flex-col items-center justify-center w-2/6'>
+                <BsCurrencyExchange className='text-2xl md:text-3xl' />
+                <p className='text-base md:text-lg font-bold'>Local currency</p>
+                <p className='text-sm md:text-base'>{data.destination.local_currency}</p>
               </div>
-              <div className='flex flex-col items-center justify-center'>
-                <RiMapPinTimeFill className='text-3xl' />
-                <p className='text-lg font-bold'>Time Zone</p>
-                <p>{data.destination.timezone}</p>
+              <div className='flex flex-col items-center justify-center w-2/6'>
+                <RiMapPinTimeFill className='text-2xl md:text-3xl' />
+                <p className='text-base md:text-lg font-bold'>Time Zone</p>
+                <p className='text-sm md:text-base'>{data.destination.timezone}</p>
               </div>
             </div>
             <hr className='my-8' />
@@ -206,9 +199,9 @@ const DestinationPage = ({userParams}) => {
         </div>
   
         {/* IMAGES */}
-        <div className='mx-40 mt-24 h-96 flex items-center justify-around'>
-          <img src={data.destination.images[2].urls.regular} className='max-h-full' alt="" />
-          <img src={data.destination.images[3].urls.regular} className='max-h-full' alt="" />
+        <div className='mx-40 mt-24 gap-y-10 gap-x` grid lg:grid-cols-2 items-center lg:justify-around'>
+          <img src={data.destination.images[2].urls.regular} className='max-h-screen' alt="" />
+          <img src={data.destination.images[3].urls.regular} className='max-h-screen' alt="" />
         </div>
   
         {/* HOTELS */}
@@ -272,7 +265,7 @@ const DestinationPage = ({userParams}) => {
         </div>
   
         {/* TRANSPORT TO GET THERE */}
-        <div className='mx-40 mt-24'>
+        {/* <div className='mx-40 mt-24'>
           <div>
             <h2 className='text-4xl'>How to get there</h2>
           </div>
@@ -291,10 +284,10 @@ const DestinationPage = ({userParams}) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
   
         {/* LOCAL TRANSPORT */}
-        <div className='mx-40 mt-24'>
+        {/* <div className='mx-40 mt-24'>
           <div>
             <h2 className='text-4xl'>How to move around</h2>
           </div>
@@ -311,7 +304,7 @@ const DestinationPage = ({userParams}) => {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
   
         {/* ACTIVITIES */}
         <div className='mx-20 lg:mx-40 mt-24 pb-28'>
@@ -340,7 +333,7 @@ const DestinationPage = ({userParams}) => {
                 <div className='flex items-center justify-between w-full'>
                   <div className='flex gap-x-2 items-center'>
                     <p className='text-sm'>From:</p>
-                    <p className='font-bold'>{activity.amount.amount} {activity.amount.currency}</p>
+                    <p className='font-bold'>{activity.amount.amount ? activity.amount.amount : activity.amount.value} {activity.amount.currency}</p>
                   </div>
                   <div className='flex gap-x-2 items-center'>
                     <TbClockHour4 />
