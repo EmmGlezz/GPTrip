@@ -34,8 +34,11 @@ const getDestinationInfo = async (req, res) => {
         })
         const data = await JSON.parse(response.data.choices[0].message.content)
         console.log(data)
-        const images = await fetch(`https://api.unsplash.com/search/photos/?query=paris&client_id=${process.env.UNSPLASH_KEY}&page=1&per_page=4`, {
-            method: 'GET'
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&page=1&per_page=4`, {
+            method: 'GET',
+            headers: {
+                Authorization: `Client-ID ${process.env.UNSPLASH_KEY}`
+            }
         })
 
         console.log(images)
@@ -52,4 +55,3 @@ const getDestinationInfo = async (req, res) => {
 
 
 module.exports = { getDestinationInfo }
-// ${data.destination.name.toLowerCase().split(' ').join('-')}
