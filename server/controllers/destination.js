@@ -30,6 +30,11 @@ const getDestinationInfo = async (req, res) => {
         })
         const data = await JSON.parse(response.data.choices[0].message.content)
         console.log(data)
+
+        const unsplash_access = await process.env.UNSPLASH_KEY
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${dataReceived.destination.name}&page=1&per_page=4&client_id=${unsplash_access}`)
+        const imagesResponse = await images.json()
+        data.destination.images = imagesResponse.results
         
         res.send(data)
     } catch (error) {

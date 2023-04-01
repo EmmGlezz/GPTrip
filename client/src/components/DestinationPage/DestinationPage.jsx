@@ -78,11 +78,6 @@ const DestinationPage = ({userParams}) => {
         });
         const dataReceived = await response.json();
 
-        const unsplash_access = process.env.UNSPLASH_KEY
-        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${dataReceived.destination.name}&page=1&per_page=4&client_id=${unsplash_access}`)
-        const imagesResponse = await images.json()
-        dataReceived.destination.images = imagesResponse.results
-
         console.log(dataReceived);
         setData(dataReceived)
         window.localStorage.setItem('DESTINATION_DATA', JSON.stringify(dataReceived))
