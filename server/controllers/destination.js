@@ -12,8 +12,8 @@ const getDestinationInfo = async (req, res) => {
         }))
         console.log('Received: ', req.body)
         const travelParameters = `With this json object, plan my trip including names and links to external resources (like websites, and images or videos), and format it on json too
-        make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
-        - Name of the destination, state, country, country code (ISO 3166), description, nearest airport, coordinates (json property called coordinates, with a json object with latitude and longitude), best months to travel in (json key has to be named best_months_to_travel_in, it has to be an array with string of the months), local currency, timezone, and website.
+        make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT, all json property names must be lowercaps):
+        - Name of the destination (must be a location name), state, country, country code (ISO 3166), description, nearest airport, coordinates (json property called coordinates, with a json object with latitude and longitude), best months to travel in (json key has to be named best_months_to_travel_in, it has to be an array with string of the months), local currency, timezone, and website (ALL THIS INFORMATION MUST BE INSIDE OF Destination PROPERTY).
         - Current location, including name, nearest airport, country.
         - The dates (json value has to be a string) in format of DD/MM - DD/MM (if user doesn't specify a date, recommend the best dates for the destination).
         - The budget, including currency in the local currency from the users country (If user doesn't specify a budget, put an average budget).
@@ -33,8 +33,9 @@ const getDestinationInfo = async (req, res) => {
         console.log(data)
 
         const unsplash_access = process.env.UNSPLASH_KEY
-        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name}&page=1&per_page=4&client_id=${unsplash_access}`)
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&page=1&per_page=4&client_id=${unsplash_access}`)
         const imagesResponse = await images.json()
+        console.log(imagesResponse)
         data.destination.images = imagesResponse.results
         
         res.send(data)
@@ -46,4 +47,3 @@ const getDestinationInfo = async (req, res) => {
 
 
 module.exports = { getDestinationInfo }
-//${data.destination.name.toLowerCase().split(' ').join('-')}
