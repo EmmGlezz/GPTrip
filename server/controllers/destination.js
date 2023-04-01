@@ -34,15 +34,15 @@ const getDestinationInfo = async (req, res) => {
         })
         const data = await JSON.parse(response.data.choices[0].message.content)
         console.log(data)
-        // const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&client_id=${process.env.UNSPLASH_KEY}&page=1&per_page=4`, {
-        //     method: 'GET'
-        // })
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&client_id=${process.env.UNSPLASH_KEY}&page=1&per_page=4`, {
+            method: 'GET'
+        })
 
-        // console.log(images)
-        // const imagesResponse = await images.json()
+        console.log(images)
+        const imagesResponse = await images.json()
         
-        // console.log(imagesResponse)
-        // data.destination.images = imagesResponse.results
+        console.log(imagesResponse)
+        data.destination.images = imagesResponse.results
         
         res.send(data)
     } catch (error) {
