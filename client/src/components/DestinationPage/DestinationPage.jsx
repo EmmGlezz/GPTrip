@@ -78,11 +78,7 @@ const DestinationPage = ({userParams}) => {
         });
         const dataReceived = await response.json();
 
-        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${dataReceived.destination.name}&page=1&per_page=4`, {
-            headers: {
-                Authorization: `Client-ID ${process.env.UNSPLASH_KEY}`
-            }
-        })
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${dataReceived.destination.name}&page=1&per_page=4&client_id=${process.env.UNSPLASH_KEY}`)
         const imagesResponse = await images.json()
         dataReceived.destination.images = imagesResponse.results
 
