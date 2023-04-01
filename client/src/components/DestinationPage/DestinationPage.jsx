@@ -77,6 +77,15 @@ const DestinationPage = ({userParams}) => {
           body: JSON.stringify(userParams)
         });
         const dataReceived = await response.json();
+
+        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${dataReceived.destination.name}&page=1&per_page=4`, {
+            headers: {
+                Authorization: `Client-ID ${process.env.UNSPLASH_KEY}`
+            }
+        })
+        const imagesResponse = await images.json()
+        dataReceived.destination.images = imagesResponse.results
+
         console.log(dataReceived);
         setData(dataReceived)
         window.localStorage.setItem('DESTINATION_DATA', JSON.stringify(dataReceived))
@@ -93,22 +102,22 @@ const DestinationPage = ({userParams}) => {
               <FixedNavbar />
         </div>
         <div className='h-96 w-screen flex flex-col justify-center items-center text-white' 
-        // style={{
-        //   backgroundImage: `url(${data.destination.images[0].urls.full})`,
-        //   backgroundAttachment: 'fixed',
-        //   backgroundRepeat: 'no-repeat',
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        // }}
+        style={{
+          backgroundImage: `url(${data.destination.images[0].urls.full})`,
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
         >
           <div className='text-center glass py-4 px-10'>
             <h1 className='text-5xl'>{data.destination.name}</h1>
             <h2 className='text-3xl'>{`${data.destination.country}`}</h2>
           </div>
         </div>
-        {/* <div className='flex w-full justify-center'>
+        <div className='flex w-full justify-center'>
           <img className='w-3/5 rounded-xl mainImage' src={data.destination.images[1].urls.regular} alt="" />
-        </div> */}
+        </div>
   
         {/* DATES AND BUDGET */}
         <div className=' mt-24 w-full'>
@@ -129,13 +138,13 @@ const DestinationPage = ({userParams}) => {
   
         {/* DESTINATION INFO */}
         <div className='py-24 mt-24 text-white' 
-        // style={{
-        //   backgroundImage: `url(${data.destination.images[0].urls.full})`,
-        //   backgroundAttachment: 'fixed',
-        //   backgroundRepeat: 'no-repeat',
-        //   backgroundSize: 'cover',
-        //   backgroundPosition: 'center',
-        // }}
+        style={{
+          backgroundImage: `url(${data.destination.images[0].urls.full})`,
+          backgroundAttachment: 'fixed',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
         >
           <div className='mx-2 lg:mx-40 glass-darker p-10'>
           <div className=' md:flex'>
@@ -203,10 +212,10 @@ const DestinationPage = ({userParams}) => {
         </div>
   
         {/* IMAGES */}
-        {/* <div className='mx-40 mt-24 gap-y-10 gap-x` grid lg:grid-cols-2 items-center lg:justify-around'>
+        <div className='mx-40 mt-24 gap-y-10 gap-x` grid lg:grid-cols-2 items-center lg:justify-around'>
           <img src={data.destination.images[2].urls.regular} className='max-h-screen' alt="" />
           <img src={data.destination.images[3].urls.regular} className='max-h-screen' alt="" />
-        </div> */}
+        </div>
   
         {/* HOTELS */}
         <div className='mx-40 mt-24'>
