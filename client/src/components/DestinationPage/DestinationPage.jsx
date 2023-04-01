@@ -211,17 +211,17 @@ const DestinationPage = ({userParams}) => {
   
         {/* IMAGES */}
         <div className='mx-40 mt-24 gap-y-10 grid lg:grid-cols-2 items-center lg:justify-around text-center text-slate-400'>
-          <div>
+          <div className='flex flex-col items-center'>
             <img src={data.destination.images[2].urls.regular} className='max-h-screen' alt="" />
             <div className='flex justify-center text-xs mt-2'>
-            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[2].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[2].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+              <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[2].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[2].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+            </div>
           </div>
-          </div>
-          <div>
+          <div className='flex flex-col items-center'>
             <img src={data.destination.images[3].urls.regular} className='max-h-screen' alt="" />
             <div className='flex justify-center text-xs mt-2'>
-            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[3].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[3].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
-          </div>
+              <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[3].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[3].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+            </div>
           </div>
         </div>
   
