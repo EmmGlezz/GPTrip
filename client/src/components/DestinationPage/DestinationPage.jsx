@@ -107,8 +107,11 @@ const DestinationPage = ({userParams}) => {
             <h2 className='text-3xl'>{`${data.destination.country}`}</h2>
           </div>
         </div>
-        <div className='flex w-full justify-center'>
+        <div className='flex flex-col w-full justify-center items-center'>
           <img className='w-3/5 rounded-xl mainImage' src={data.destination.images[1].urls.regular} alt="" />
+          <div className='w-3/5 flex justify-end text-xs text-slate-400'>
+            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[1].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[1].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+          </div>
         </div>
   
         {/* DATES AND BUDGET */}
@@ -201,12 +204,25 @@ const DestinationPage = ({userParams}) => {
           </div>
           <hr className='my-8' />
           </div>
+          <div className='flex justify-center text-xs mt-2'>
+            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[0].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[0].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+          </div>
         </div>
   
         {/* IMAGES */}
-        <div className='mx-40 mt-24 gap-y-10 gap-x` grid lg:grid-cols-2 items-center lg:justify-around'>
-          <img src={data.destination.images[2].urls.regular} className='max-h-screen' alt="" />
-          <img src={data.destination.images[3].urls.regular} className='max-h-screen' alt="" />
+        <div className='mx-40 mt-24 gap-y-10 grid lg:grid-cols-2 items-center lg:justify-around text-center text-slate-400'>
+          <div>
+            <img src={data.destination.images[2].urls.regular} className='max-h-screen' alt="" />
+            <div className='flex justify-center text-xs mt-2'>
+            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[2].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[2].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+          </div>
+          </div>
+          <div>
+            <img src={data.destination.images[3].urls.regular} className='max-h-screen' alt="" />
+            <div className='flex justify-center text-xs mt-2'>
+            <p>Photo by <a href={`https://unsplash.com/@${data.destination.images[3].user.username}?utm_source=GPTrip&utm_medium=referral`} target='_blank'>{data.destination.images[3].user.name}</a> on <a href={`https://unsplash.com/?utm_source=GPTrip&utm_medium=referral`} target='_blank'>Unsplash</a></p>
+          </div>
+          </div>
         </div>
   
         {/* HOTELS */}
