@@ -9,8 +9,6 @@ const getDestinationInfo = async (req, res) => {
         const openAi = new OpenAIApi(new Configuration({
             apiKey: process.env.OPENAI_API_KEY
         }))
-        console.log(process.env.OPENAI_API_KEY)
-        console.log(process.env.UNSPLASH_KEY)
         console.log('Received: ', req.body)
         const travelParameters = `With this json object, plan my trip including names and links to external resources (like websites, and images or videos), and format it on json too
         make sure that the json object contains the next (IMPORTANT, ONLY RETURN A JSON OBJECT):
@@ -25,8 +23,6 @@ const getDestinationInfo = async (req, res) => {
         - Group style.
         - Travel style. 
         : ${JSON.stringify(req.body)}`
-
-        console.log(travelParameters)
         
         const response = await openAi.createChatCompletion({
             model: "gpt-3.5-turbo",
@@ -34,24 +30,14 @@ const getDestinationInfo = async (req, res) => {
         })
         const data = await JSON.parse(response.data.choices[0].message.content)
         console.log(data)
-        const images = await fetch(`https://api.unsplash.com/search/photos/?query=${data.destination.name.toLowerCase().split(' ').join('-')}&page=1&per_page=4`, {
-            method: 'GET',
-            headers: {
-                Authorization: `Client-ID ${process.env.UNSPLASH_KEY}`
-            }
-        })
-
-        console.log(images)
-        const imagesResponse = await images.json()
-        
-        console.log(imagesResponse)
-        data.destination.images = imagesResponse.results
         
         res.send(data)
     } catch (error) {
+        console.log(error)
         res.send(error)
     }
 }
 
 
 module.exports = { getDestinationInfo }
+//${data.destination.name.toLowerCase().split(' ').join('-')}
