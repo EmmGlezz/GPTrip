@@ -40,7 +40,7 @@ const Home = ({getUserParams}) => {
         <div className='text-5xl mb-10'>
           <Subtitles />
         </div>
-        <div className='glass w-4/5 md:w-3/5 h-fit min-h-fit'>
+        <div className='glass w-5/6 md:w-3/5 h-fit min-h-fit'>
           <Form sendUserParameters={getUserParameters}/>
         </div>
       </div>
