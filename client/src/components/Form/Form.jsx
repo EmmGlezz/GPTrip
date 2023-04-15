@@ -79,7 +79,9 @@ const Form = ({sendUserParameters}) => {
     <form onSubmit={handleSubmit} className='w-full my-0 mx-auto p-3 flex flex-col gap-3 items-center'>
         {/* <label className='w-full text-2xl'>Whats your destination?</label> */}
         <div className='text-lg md:text-2xl flex justify-between items-center px-3 w-full'>
-            <div></div>
+            <div>
+                <span className='text-sm md:text-md'>{currentNumQuestion + 1}/{questionsObject.length}</span>
+            </div>
             <Typewriter 
                 // onInit={(typewriter) => {
                 //     typewriter.typeString(question)
