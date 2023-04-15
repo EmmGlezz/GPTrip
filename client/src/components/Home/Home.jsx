@@ -16,6 +16,7 @@ const Home = ({getUserParams}) => {
   const navigate = useNavigate();
 
   const getUserParameters = (userParameters) => {
+    console.log(userParameters)
     getUserParams(userParameters)
     navigate("/destination");
   }

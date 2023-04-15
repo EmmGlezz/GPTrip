@@ -59,7 +59,13 @@ const Form = ({sendUserParameters}) => {
 
     const [question, setQuestion] = useState(questionsObject[currentNumQuestion].question)
     const handleSubmit = (e) => {
-        e.preventDefault()
+        if (e) {
+            e.preventDefault()
+        }
+        
+        if (currentPrompt.trim() === '') { // Check if textarea field is empty or only contains whitespace
+            return; // Don't submit the form if the textarea field is empty
+          }
         
         if (currentNumQuestion >= 6) {
             const parameter = questionsObject[currentNumQuestion].parameter
@@ -103,7 +109,17 @@ const Form = ({sendUserParameters}) => {
         {console.log(userParameters)} */}
         <div className='w-full my-0 mx-auto p-3 flex gap-3 items-center glassForm'>
             <textarea onChange={(e) => setCurrentPrompt(e.target.value)} value={currentPrompt}
-            className='w-full text-base md:text-lg p-3 bg-transparent rounded-md border-none outline-none resize-none' name="prompt" id="prompt" cols='1' rows="1" placeholder=''>
+            className={`w-full text-base md:text-lg p-3 bg-transparent rounded-md border-none outline-none resize-none`} name="prompt" id="prompt" cols='1' rows="1" placeholder=''
+            onKeyDown={(e) => {
+                if (e && e.key === 'Enter' && !e.shiftKey) { // Check if Enter key is pressed without Shift key
+                    e.preventDefault(); // Prevent default behavior (line break)
+                    if (currentPrompt.trim() === '') { // Check if textarea field is empty or only contains whitespace
+                        return; // Don't submit the form if the textarea field is empty
+                        }
+                    handleSubmit(); // Call the handleSubmit function
+                }
+              }}
+            >
             </textarea>
             <button className='outline-none border-none cursor-pointer bg-transparent' type='submit'><AiOutlineSend className='text-xl' /></button>
         </div>
