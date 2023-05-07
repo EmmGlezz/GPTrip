@@ -3,6 +3,7 @@ import Home from './components/Home/Home'
 import DestinationPage from './components/DestinationPage/DestinationPage';
 import { Routes, Route, HashRouter } from "react-router-dom";
 import './App.css'
+import {Analytics} from '@vercel/analytics';
 
 
 
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/destination" exact element={<DestinationPage userParams={params} />} />
       </Routes>
       </HashRouter>
+      <Analytics />
     </div>
   )
 }
