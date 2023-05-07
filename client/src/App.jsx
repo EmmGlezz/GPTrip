@@ -3,7 +3,7 @@ import Home from './components/Home/Home'
 import DestinationPage from './components/DestinationPage/DestinationPage';
 import { Routes, Route, HashRouter } from "react-router-dom";
 import './App.css'
-import {Analytics} from '@vercel/analytics';
+import {Analytics} from '@vercel/analytics/react';
 
 
 
